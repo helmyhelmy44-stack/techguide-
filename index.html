@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>S&H Planet | كوكب الصور</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* إضافة الألوان الملكية من تصميمك */
+        :root { --gold: #D4AF37; --dark: #121212; }
+        body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; display: flex; }
+        
+        /* شريط الأدوات الجانبي (Side Nav) */
+        nav { width: 80px; background: #000; height: 100vh; display: flex; flex-direction: column; align-items: center; padding-top: 20px; border-left: 1px solid var(--gold); }
+        nav i { color: var(--gold); font-size: 24px; margin: 25px 0; cursor: pointer; transition: 0.3s; }
+        nav i:hover { transform: scale(1.2); text-shadow: 0 0 10px var(--gold); }
+
+        /* محتوى المنصة */
+        main { flex: 1; padding: 20px; overflow-y: auto; }
+        .header-logo { text-align: center; margin-bottom: 30px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; }
+        .photo-card { border-radius: 15px; overflow: hidden; border: 1px solid #333; position: relative; }
+        .photo-card img { width: 100%; height: 250px; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <i class="fas fa-sign-in-alt" onclick="alert('جاري فتح صفحة تسجيل الدخول...')"></i>
+        <i class="fas fa-images" onclick="location.href='#gallery'"></i>
+        <i class="fas fa-cloud-upload-alt" onclick="document.getElementById('uploadInput').click()"></i>
+        <i class="fas fa-user-circle" onclick="alert('عرض ملف حلمي الملكي')"></i>
+        <i class="fas fa-cog" onclick="alert('فتح الإعدادات الذهبية')"></i>
+    </nav>
+
+    <main>
+        <div class="header-logo">
+            <h1 style="color:var(--gold)">كوكب الصور</h1>
+            <p>Driven by Human.. Powered by AI</p>
+        </div>
+
+        <div class="gallery-grid" id="gallery">
+            </div>
+
+        <input type="file" id="uploadInput" style="display:none" onchange="handleUpload(event)">
+    </main>
+
+    <script>
+        function handleUpload(event) {
+            const file = event.target.files[0];
+            if(file) {
+                alert("تم استلام الصورة: " + file.name + " .. جاري معالجتها بذكاء سوسكا الاصطناعي");
+            }
+        }
+    </script>
+</body>
+</html>
