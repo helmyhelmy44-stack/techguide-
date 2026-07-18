@@ -386,7 +386,7 @@
     </style>
         <!-- JavaScript -->
     <script>
-        // Product Data
+        // Product Data with Amazon Affiliate Links
         const products = [
             {
                 id: 1,
@@ -403,7 +403,8 @@
                     'الكاميرا': '48MP ثلاثية',
                     'البطارية': '4500mAh',
                     'التخزين': '256GB'
-                }
+                },
+                amazonLink: 'https://www.amazon.eg/s?k=iPhone+17+Pro+Max'
             },
             {
                 id: 2,
@@ -420,7 +421,8 @@
                     'الكاميرا': '200MP + 10x Zoom',
                     'البطارية': '5500mAh',
                     'التخزين': '512GB'
-                }
+                },
+                amazonLink: 'https://www.amazon.eg/s?k=Samsung+Galaxy+S26+Ultra'
             },
             {
                 id: 3,
@@ -437,7 +439,8 @@
                     'الكاميرا': '50MP Leica',
                     'البطارية': '5000mAh',
                     'التخزين': '256GB'
-                }
+                },
+                amazonLink: 'https://www.amazon.eg/s?k=Xiaomi+16+Pro'
             },
             {
                 id: 4,
@@ -454,7 +457,8 @@
                     'الرام': '16GB',
                     'التخزين': '512GB SSD',
                     'البطارية': '18 ساعة'
-                }
+                },
+                amazonLink: 'https://www.amazon.eg/s?k=MacBook+Pro+M4'
             },
             {
                 id: 5,
@@ -471,7 +475,8 @@
                     'الرام': '32GB',
                     'التخزين': '1TB SSD',
                     'البطارية': '12 ساعة'
-                }
+                },
+                amazonLink: 'https://www.amazon.eg/s?k=Dell+XPS+15'
             },
             {
                 id: 6,
@@ -488,7 +493,8 @@
                     'الكارت': 'RTX 4080',
                     'الرام': '32GB',
                     'التخزين': '1TB SSD'
-                }
+                },
+                amazonLink: 'https://www.amazon.eg/s?k=ASUS+ROG+Strix'
             }
         ];
 
@@ -516,7 +522,7 @@
                                 </div>
                             `).join('')}
                         </div>
-                        <button class="buy-btn" onclick="trackBuy('${product.name}', ${product.price})">
+                        <button class="buy-btn" onclick="trackBuy('${product.name}', ${product.price}, '${product.amazonLink}')">
                             🛒 اشتري الآن من أمازون
                         </button>
                     </div>
@@ -530,8 +536,8 @@
             document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Track Buy Click (GTM)
-        function trackBuy(productName, price) {
+        // Track Buy Click (GTM) + Open Amazon
+        function trackBuy(productName, price, amazonLink) {
             // Push to dataLayer for GTM
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
@@ -540,7 +546,9 @@
                 product_price: price,
                 currency: 'EGP'
             });
-            alert(`تم تتبع: ${productName} - ${price.toLocaleString()} ج.م\n(في النسخة الحقيقية هيفتح رابط أمازون)`);
+            
+            // Open Amazon in new tab
+            window.open(amazonLink, '_blank');
         }
 
         // AI Price Analysis
