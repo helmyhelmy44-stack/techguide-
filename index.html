@@ -530,15 +530,22 @@
             `).join('');
         }
 
-        // Filter Products
+        // Filter Products - المعدل!
         function filterProducts(category) {
+            if (category === 'deals') {
+                window.open('https://www.amazon.eg/gp/goldbox', '_blank');
+                return;
+            }
+            if (category === 'accessories') {
+                window.open('https://www.amazon.eg/s?k=mobile+accessories', '_blank');
+                return;
+            }
             renderProducts(category);
-            document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('phones').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Track Buy Click (GTM) + Open Amazon
         function trackBuy(productName, price, amazonLink) {
-            // Push to dataLayer for GTM
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 event: 'product_click',
@@ -547,7 +554,6 @@
                 currency: 'EGP'
             });
             
-            // Open Amazon in new tab
             window.open(amazonLink, '_blank');
         }
 
@@ -575,7 +581,6 @@
                     </p>
                 `;
                 
-                // Push to dataLayer
                 window.dataLayer.push({
                     event: 'ai_analysis',
                     analysis_type: 'price',
